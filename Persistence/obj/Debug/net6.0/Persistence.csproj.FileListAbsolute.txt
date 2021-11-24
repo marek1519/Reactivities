@@ -1,0 +1,15 @@
+E:\UDEMY\ReactNetCore\Reactivities\Persistence\bin\Debug\net6.0\Persistence.deps.json
+E:\UDEMY\ReactNetCore\Reactivities\Persistence\bin\Debug\net6.0\Persistence.dll
+E:\UDEMY\ReactNetCore\Reactivities\Persistence\bin\Debug\net6.0\ref\Persistence.dll
+E:\UDEMY\ReactNetCore\Reactivities\Persistence\bin\Debug\net6.0\Persistence.pdb
+E:\UDEMY\ReactNetCore\Reactivities\Persistence\bin\Debug\net6.0\Domain.dll
+E:\UDEMY\ReactNetCore\Reactivities\Persistence\bin\Debug\net6.0\Domain.pdb
+E:\UDEMY\ReactNetCore\Reactivities\Persistence\obj\Debug\net6.0\Persistence.csproj.AssemblyReference.cache
+E:\UDEMY\ReactNetCore\Reactivities\Persistence\obj\Debug\net6.0\Persistence.GeneratedMSBuildEditorConfig.editorconfig
+E:\UDEMY\ReactNetCore\Reactivities\Persistence\obj\Debug\net6.0\Persistence.AssemblyInfoInputs.cache
+E:\UDEMY\ReactNetCore\Reactivities\Persistence\obj\Debug\net6.0\Persistence.AssemblyInfo.cs
+E:\UDEMY\ReactNetCore\Reactivities\Persistence\obj\Debug\net6.0\Persistence.csproj.CoreCompileInputs.cache
+E:\UDEMY\ReactNetCore\Reactivities\Persistence\obj\Debug\net6.0\Persistence.csproj.CopyComplete
+E:\UDEMY\ReactNetCore\Reactivities\Persistence\obj\Debug\net6.0\Persistence.dll
+E:\UDEMY\ReactNetCore\Reactivities\Persistence\obj\Debug\net6.0\ref\Persistence.dll
+E:\UDEMY\ReactNetCore\Reactivities\Persistence\obj\Debug\net6.0\Persistence.pdb
