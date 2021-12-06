@@ -4,11 +4,19 @@ import { Activity } from "../../../app/models/activity";
 
 interface Props {
   activity: Activity | undefined;
+  submitting: boolean;
   closeForm: () => void;
-  createOrEdit: (activity : Activity | any) => void;
+  createOrEdit: (activity: Activity | any) => void;
+  
 }
 
-const ActivityForm = ({ activity: selectedActivity, closeForm, createOrEdit }: Props) => {
+const ActivityForm = ({
+  activity: selectedActivity,
+  submitting,
+  closeForm,
+  createOrEdit,
+  
+}: Props) => {
   const initialState = selectedActivity ?? {
     id: "",
     title: "",
@@ -21,7 +29,7 @@ const ActivityForm = ({ activity: selectedActivity, closeForm, createOrEdit }: P
 
   const [activity, SetActivity] = useState(initialState);
 
-  const handleSubmit = (event:FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     createOrEdit(activity);
   };
@@ -62,6 +70,7 @@ const ActivityForm = ({ activity: selectedActivity, closeForm, createOrEdit }: P
           onChange={handleInputChange}
         />
         <Form.Input
+          type="date"
           placeholder="Date"
           label="Date"
           value={activity.date}
@@ -84,8 +93,8 @@ const ActivityForm = ({ activity: selectedActivity, closeForm, createOrEdit }: P
         />
 
         <Button.Group widths="2">
-          <Button floated="right" positive type="submit" content="Submit" />
-          <Button
+          <Button loading={submitting} floated="right" positive type="submit" content="Submit" />
+          <Button 
             floated="right"
             type="button"
             content="Cancel"
