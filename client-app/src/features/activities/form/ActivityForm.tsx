@@ -1,13 +1,15 @@
 import { observer } from "mobx-react-lite";
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { NavLink, useParams } from "react-router-dom";
 import { Form, Segment, Button } from "semantic-ui-react";
+import LoadingComponent from "../../../app/layout/LoadingComponent";
 import { useStore } from "../../../app/stores/Store";
+import { v4 as uuid } from "uuid";
+import { useNavigate  } from "react-router-dom";
 
 const ActivityForm = () => {
-
-  const{activityStore} = useStore();
-
-  const initialState = activityStore.selectedActivity ?? {
+  const navigate = useNavigate();
+  const [activity, SetActivity] = useState({
     id: "",
     title: "",
     date: "",
@@ -15,13 +17,32 @@ const ActivityForm = () => {
     category: "",
     city: "",
     venue: "",
-  };
+  });
 
-  const [activity, SetActivity] = useState(initialState);
+  const { activityStore } = useStore();
+  const { createActivity, updateActivity, loadActivity, loading } =
+    activityStore;
+  const { id } = useParams<{ id: string }>();
+
+  useEffect(() => {
+    if (id) {
+      loadActivity(id).then((activity) => {
+        SetActivity(activity!);
+      });
+    }
+  }, [id, loadActivity]);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    activity.id ? activityStore.updateActivity(activity) : activityStore.createActivity(activity);
+    if (activity.id.length === 0) {
+      let newActivity = { ...activity, id: uuid() };
+      createActivity(newActivity).then(() => {
+        navigate(`/activities/${newActivity.id}`);
+      });
+    } else {
+      updateActivity(activity);
+      navigate(`/activities/${activity.id}`);
+    }
   };
 
   function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
@@ -33,6 +54,7 @@ const ActivityForm = () => {
     const { name, value } = event.target;
     SetActivity({ ...activity, [name]: value });
   }
+  if (loading) <LoadingComponent></LoadingComponent>;
 
   return (
     <Segment clearing>
@@ -83,12 +105,19 @@ const ActivityForm = () => {
         />
 
         <Button.Group widths="2">
-          <Button loading={activityStore.loading} floated="right" positive type="submit" content="Submit" />
-          <Button 
+          <Button
+            loading={activityStore.loading}
+            floated="right"
+            positive
+            type="submit"
+            content="Submit"
+          />
+          <Button
             floated="right"
             type="button"
             content="Cancel"
-            onClick={activityStore.closeForm}
+            as={NavLink}
+            to="/activities"
           />
         </Button.Group>
       </Form>
