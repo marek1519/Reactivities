@@ -6,7 +6,7 @@ import { observer } from "mobx-react-lite";
 import HomePage from "../../features/activities/home/HomePage";
 import { LayoutRouteProps, Route, Routes, useLocation } from "react-router-dom";
 import ActivityForm from "../../features/activities/form/ActivityForm";
-import ActivityDetails from "../../features/activities/detals/ActivityDetails";
+import ActivityDetails from "../../features/activities/details/ActivityDetails";
 
 function App() {
   const location = useLocation();
