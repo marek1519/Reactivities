@@ -61,3 +61,6 @@ E:\UDEMY\ReactNetCore\Reactivities\API\bin\Debug\net6.0\MediatR.dll
 E:\UDEMY\ReactNetCore\Reactivities\API\bin\Debug\net6.0\MediatR.Extensions.Microsoft.DependencyInjection.dll
 E:\UDEMY\ReactNetCore\Reactivities\API\bin\Debug\net6.0\AutoMapper.dll
 E:\UDEMY\ReactNetCore\Reactivities\API\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+E:\UDEMY\ReactNetCore\Reactivities\API\bin\Debug\net6.0\FluentValidation.dll
+E:\UDEMY\ReactNetCore\Reactivities\API\bin\Debug\net6.0\FluentValidation.AspNetCore.dll
+E:\UDEMY\ReactNetCore\Reactivities\API\bin\Debug\net6.0\FluentValidation.DependencyInjectionExtensions.dll

@@ -7,30 +7,54 @@ import HomePage from "../../features/activities/home/HomePage";
 import { LayoutRouteProps, Route, Routes, useLocation } from "react-router-dom";
 import ActivityForm from "../../features/activities/form/ActivityForm";
 import ActivityDetails from "../../features/activities/details/ActivityDetails";
+import TestErrors from "../../features/errors/TestErrors";
+import { ToastContainer } from "react-toastify";
+import NotFound from "../../features/errors/NotFound";
+import ServerError from "../../features/errors/ServerError";
 
 function App() {
   const location = useLocation();
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route
-        path="/activities"
-        element={<App2 element={<ActivitiyDashboard />} />}
-      />
-      <Route
-        path="/activities/:id"
-        element={<App2 element={<ActivityDetails />} />}
-      />
-      <Route
-        path="/createActivity"
-        element={<App2 element={<ActivityForm />} />}
-      />
-      <Route
-        key={location.key}
-        path="/manage/:id"
-        element={<App2 element={<ActivityForm />} />}
-      />
-    </Routes>
+    <>
+      <ToastContainer position="bottom-right"  />
+
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route
+          path="/activities"
+          element={<App2 element={<ActivitiyDashboard />} />}
+        />
+        <Route
+          path="/activities/:id"
+          element={<App2 element={<ActivityDetails />} />}
+        />
+        <Route
+          path="/createActivity"
+          element={<App2 element={<ActivityForm />} />}
+        />
+        <Route
+          key={location.key}
+          path="/manage/:id"
+          element={<App2 element={<ActivityForm />} />}
+        />
+
+        <Route
+          key={location.key}
+          path="/errors"
+          element={<App2 element={<TestErrors />} />}
+        />
+        <Route
+          key={location.key}
+          path="/server-error"
+          element={<App2 element={<ServerError />} />}
+        />
+
+        <Route path='*' element={<App2 element={<NotFound />} />}
+        />
+
+
+      </Routes>
+    </>
   );
 }
 
