@@ -1,11 +1,9 @@
 import { observer } from 'mobx-react-lite';
 import { Link } from 'react-router-dom';
 import { Container, Header, Segment, Image, Button, Divider } from 'semantic-ui-react';
-import { useStore } from '../../../app/stores/Store';
 
 
 export default observer(function HomePage() {
-    const {  } = useStore();
     return (
         <Segment inverted textAlign='center' vertical className='masthead'>
             <Container text>
