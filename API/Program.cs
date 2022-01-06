@@ -1,3 +1,5 @@
+using Domain;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 
@@ -14,9 +16,10 @@ namespace API
 
             try
             {
+                var userManager = serices.GetRequiredService<UserManager<AppUser>>();
                 var context = serices.GetRequiredService<DataContext>();
                 await context.Database.MigrateAsync();
-                await Seed.SeedData(context);
+                await Seed.SeedData(context, userManager);
             }
             catch (Exception exc)
             {

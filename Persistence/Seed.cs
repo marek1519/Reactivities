@@ -3,16 +3,56 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Domain;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace Persistence
 {
     public class Seed
     {
-        public static async Task SeedData(DataContext context)
+        public static async Task SeedData(DataContext context, UserManager<AppUser> userManager)
         {
-            if (context.Activities.Any()) return;
-            
-            var activities = new List<Activity>
+            bool _save = false;
+            if (!userManager.Users.Any())
+            {
+                _save = true;
+                var users = new List<AppUser>
+                {
+                    new AppUser
+                    {
+                        DisplayName = "Bob",
+                        UserName = "bob",
+                        Email = "bob@test.com"
+                    },
+                    new AppUser
+                    {
+                        DisplayName = "Jane",
+                        UserName = "jane",
+                        Email = "jane@test.com"
+                    },
+                    new AppUser
+                    {
+                        DisplayName = "Tom",
+                        UserName = "tom",
+                        Email = "tom@test.com"
+                    },
+                };
+
+                foreach (var user in users)
+                {
+                    var r = await userManager.CreateAsync(user, "Pa$$w0rd");
+                    if (r.Succeeded)
+                    {
+                        var u = await context.Users.FirstOrDefaultAsync(p => p.Email == user.Email);
+                        u.EmailConfirmed = true;
+                    }
+                }
+            }
+
+            if (!context.Activities.Any())
+            {
+                _save = true;
+                var activities = new List<Activity>
             {
                 new Activity
                 {
@@ -105,9 +145,11 @@ namespace Persistence
                     Venue = "Cinema",
                 }
             };
+                await context.Activities.AddRangeAsync(activities);
+            }
 
-            await context.Activities.AddRangeAsync(activities);
-            await context.SaveChangesAsync();
+            if (_save)
+                await context.SaveChangesAsync();
         }
     }
 }
