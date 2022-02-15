@@ -40,7 +40,7 @@ namespace Application.Activities
 
                 var hostUsername = activity.Attendees.FirstOrDefault(x => x.IsHost)?.AppUser?.UserName;
 
-                var attendance = activity.Attendees.FirstOrDefault(x => x.AppUser.UserName == user.UserName);
+                var attendance = activity.Attendees.FirstOrDefault(x => x.AppUserId == user.Id);
 
                 if (attendance is not null && hostUsername == user.UserName)
                 {
