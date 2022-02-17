@@ -10,6 +10,8 @@ using FluentValidation.AspNetCore;
 using Application.Middleware;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using Infrastructure.Photos;
+using Application.Interfaces;
 
 namespace API
 {
@@ -37,6 +39,8 @@ namespace API
             });
             services.AddAppServices(_config);
             services.AddIdentityServices(_config);
+            services.Configure<ClaudinarySettings>(_config.GetSection("CludinarySettings"));
+            services.AddScoped<IPhotoAccessor, PhotoAccessor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -3,7 +3,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain
 {
-
     [Table("Activities")]
     public class Activity
     {
